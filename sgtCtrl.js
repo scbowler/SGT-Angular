@@ -15,7 +15,7 @@ app.controller('sgtCtrl', function($scope){
         var len = $scope.students.length;
         var total = 0;
         for(var i=0; i<len; i++){
-            total += parseFloat($scope.students[i].grade);
+            total += $scope.students[i].grade;
         }
         return Math.floor(total/len) + "%";
     };
@@ -25,13 +25,13 @@ app.controller('sgtCtrl', function($scope){
             var student = $scope.students[$scope.index];
             student.sName = $scope.sName;
             student.course = $scope.course;
-            student.grade = $scope.grade;
+            student.grade = parseFloat($scope.grade);
         }else {
             var student = {
                 id: $scope.newId(),
                 sName: $scope.sName,
                 course: $scope.course,
-                grade: $scope.grade
+                grade: parseFloat($scope.grade)
             };
             $scope.students.push(student);
         }

@@ -41,6 +41,26 @@
         </div>
         <button type="button" class="btn btn-success" ng-click="addStudent()">Add</button>
         <button type="button" class="btn btn-danger" ng-click="clearForm()">Cancel</button>
+        <hr>
+        <h4>Sort By</h4>
+        <div class="input-group form-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-sort-by-alphabet"></span>
+            </span>
+            <select class="form-control" ng-model="sortBy">
+                <option value="">Order Added</option>
+                <option value="sName">Name</option>
+                <option value="course">Course</option>
+                <option value="grade">Grade</option>
+            </select>
+        </div>
+        <h4>Search</h4>
+        <div class="input-group form-group">
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search"></span>
+            </span>
+            <input type="text" class="form-control" ng-model="search" placeholder="Search Table">
+        </div>
     </div>
     <div class="student-list-container col-sm-9">
         <table class="student-list table table-striped">
@@ -51,7 +71,7 @@
                 <th>Student Grade</th>
                 <th>Operations</th>
             </tr>
-            <tr ng-repeat="student in students">
+            <tr ng-repeat="student in students | filter: search | orderBy: sortBy">
                 <td>{{ student.sName }}</td>
                 <td>{{ student.course }}</td>
                 <td>{{ student.grade }}</td>
