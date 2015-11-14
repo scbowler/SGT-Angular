@@ -8,11 +8,18 @@ app.controller('sgtCtrl', function($scope){
     ];
 
     $scope.newId = function(){
-        return $scope.students[$scope.students.length-1].id + 1;
+        var len = $scope.students.length;
+        if(len == 0){
+            return 1;
+        }
+        return $scope.students[len-1].id + 1;
     };
 
     $scope.average = function(){
         var len = $scope.students.length;
+        if(len == 0){
+            return "No Records";
+        }
         var total = 0;
         for(var i=0; i<len; i++){
             total += $scope.students[i].grade;
@@ -50,6 +57,7 @@ app.controller('sgtCtrl', function($scope){
         $scope.course = '';
         $scope.grade = '';
         $scope.edit = false;
+        $scope.studentForm.$setPristine();
     };
 
     $scope.editStudent = function(obj){

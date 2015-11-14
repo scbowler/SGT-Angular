@@ -21,27 +21,27 @@
             <small class="pull-right">Grade Average : <span class="avgGrade">{{ average() }}</span></small>
         </h3>
     </div>
-    <div class="student-add-form col-sm-3 pull-right">
+    <form class="student-add-form col-sm-3 pull-right" name="studentForm" novalidate>
         <h4>Add Student</h4>
         <div class="input-group form-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-user"></span>
             </span>
-            <input type="text" class="form-control" ng-model="sName" placeholder="Student Name">
+            <input type="text" class="form-control" ng-model="sName" name="sName" placeholder="Student Name" required>
         </div>
         <div class="input-group form-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-education"></span>
             </span>
-            <input type="text" class="form-control" ng-model="course" placeholder="Student Course">
+            <input type="text" class="form-control" ng-model="course" name="course" placeholder="Student Course" required>
         </div>
         <div class="input-group form-group">
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-list-alt"></span>
             </span>
-            <input type="text" class="form-control" ng-model="grade" placeholder="Student Grade">
+            <input type="number" class="form-control" ng-model="grade" name="grade" placeholder="Student Grade" required>
         </div>
-        <button type="button" class="btn btn-success" ng-click="addStudent()">Add</button>
+        <button type="button" class="btn btn-success" name="addBtn" ng-click="addStudent()" ng-disabled="studentForm.$invalid">Add</button>
         <button type="button" class="btn btn-danger" ng-click="clearForm()">Cancel</button>
         <hr>
         <h4>Sort By</h4>
@@ -63,12 +63,12 @@
             </span>
             <input type="text" class="form-control" ng-model="search" placeholder="Search Table">
         </div>
-    </div>
+    </form>
     <div class="student-list-container col-sm-9">
         <table class="student-list table table-striped">
             <thead>
             <tr>
-                <th>Student Name</th>
+                <th>Student <Name></Name></th>
                 <th>Student Course</th>
                 <th>Student Grade</th>
                 <th>Operations</th>
@@ -90,7 +90,9 @@
                 <td>{{ sName }}</td>
                 <td>{{ course }}</td>
                 <td>{{ grade }}</td>
-                <td></td>
+                <td>
+                    <button class="btn btn-success" ng-show="studentForm.$valid" ng-click="addStudent()">Add</button>
+                </td>
             </tr>
             </thead>
             <tbody>
